@@ -248,5 +248,11 @@ let maxl = 300,
       clicked = false;
     },
     false
-  );  
+  );
+  
+  function loop() {
+    window.requestAnimFrame(loop);
+    c.clearRect(0, 0, w, h);
+    draw();
+  }
 }
