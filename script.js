@@ -28,4 +28,8 @@ window.onload = function () {
     h = (canvas.height = window.innerHeight),
     mouse = { x: false, y: false },
     last_mouse = {};
+
+    function dist(p1x, p1y, p2x, p2y) {
+      return Math.sqrt(Math.pow(p2x - p1x, 2) + Math.pow(p2y - p1y, 2));
+}
 }
