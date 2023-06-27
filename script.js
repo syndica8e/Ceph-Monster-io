@@ -255,4 +255,11 @@ let maxl = 300,
     c.clearRect(0, 0, w, h);
     draw();
   }
+
+  window.addEventListener("resize", function () {
+    (w = canvas.width = window.innerWidth),
+      (h = canvas.height = window.innerHeight);
+    loop();
+  });  
+  
 }
