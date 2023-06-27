@@ -172,4 +172,49 @@ let maxl = 300,
       )
     );
   }
+  
+  function draw() {
+    if (mouse.x) {
+      target.errx = mouse.x - target.x;
+      target.erry = mouse.y - target.y;
+    } else {
+      target.errx =
+        w / 2 +
+        ((h / 2 - q) * Math.sqrt(2) * Math.cos(t)) /
+          (Math.pow(Math.sin(t), 2) + 1) -
+        target.x;
+      target.erry =
+        h / 2 +
+        ((h / 2 - q) * Math.sqrt(2) * Math.cos(t) * Math.sin(t)) /
+          (Math.pow(Math.sin(t), 2) + 1) -
+        target.y;
+    }
+  
+    target.x += target.errx / 10;
+    target.y += target.erry / 10;
+  
+    t += 0.01;
+  
+    c.beginPath();
+    c.arc(
+      target.x,
+      target.y,
+      dist(last_target.x, last_target.y, target.x, target.y) + 5,
+      0,
+      2 * Math.PI
+    );
+    c.fillStyle = "hsl(210,100%,80%)";
+    c.fill();
+  
+    for (i = 0; i < numt; i++) {
+      tent[i].move(last_target, target);
+      tent[i].show2(target);
+    }
+    for (i = 0; i < numt; i++) {
+      tent[i].show(target);
+    }
+    last_target.x = target.x;
+    last_target.y = target.y;
+  }
+  
 }
