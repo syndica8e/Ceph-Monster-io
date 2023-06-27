@@ -263,4 +263,5 @@ let maxl = 300,
   });  
 
   loop();
+  setInterval(loop, 1000 / 60);
 }
