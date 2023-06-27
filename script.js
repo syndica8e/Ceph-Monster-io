@@ -240,5 +240,13 @@ let maxl = 300,
       clicked = true;
     },
     false
+  );
+  
+  canvas.addEventListener(
+    "mouseup",
+    function (e) {
+      clicked = false;
+    },
+    false
   );  
 }
