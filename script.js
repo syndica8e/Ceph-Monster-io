@@ -20,3 +20,12 @@ function init(elemid) {
   c.fillRect(0, 0, w, h);
   return { c: c, canvas: canvas };
 }
+
+window.onload = function () {
+  let c = init("canvas").c,
+    canvas = init("canvas").canvas,
+    w = (canvas.width = window.innerWidth),
+    h = (canvas.height = window.innerHeight),
+    mouse = { x: false, y: false },
+    last_mouse = {};
+}
