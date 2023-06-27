@@ -217,4 +217,15 @@ let maxl = 300,
     last_target.y = target.y;
   }
   
+  canvas.addEventListener(
+    "mousemove",
+    function (e) {
+      last_mouse.x = mouse.x;
+      last_mouse.y = mouse.y;
+  
+      mouse.x = e.pageX - this.offsetLeft;
+      mouse.y = e.pageY - this.offsetTop;
+    },
+    false
+  );
 }
