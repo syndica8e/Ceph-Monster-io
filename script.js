@@ -73,4 +73,80 @@ class segment {
     c.lineTo(this.nextPos.x, this.nextPos.y);
   }
 }
+class tentacle {
+  constructor(x, y, l, n, a) {
+    this.x = x;
+    this.y = y;
+    this.l = l;
+    this.n = n;
+    this.t = {};
+    this.rand = Math.random();
+    this.segments = [new segment(this, this.l / this.n, 0, true)];
+    for (let i = 1; i < this.n; i++) {
+      this.segments.push(
+        new segment(this.segments[i - 1], this.l / this.n, 0, false)
+      );
+    }
+  }
+
+  move(last_target, target) {
+    this.angle = Math.atan2(target.y - this.y, target.x - this.x);
+    this.dt = dist(last_target.x, last_target.y, target.x, target.y) + 5;
+    this.t = {
+      x: target.x - 0.8 * this.dt * Math.cos(this.angle),
+      y: target.y - 0.8 * this.dt * Math.sin(this.angle)
+    };
+    if (this.t.x) {
+      this.segments[this.n - 1].update(this.t);
+    } else {
+      this.segments[this.n - 1].update(target);
+    }
+    for (let i = this.n - 2; i >= 0; i--) {
+      this.segments[i].update(this.segments[i + 1].pos);
+    }
+    if (
+      dist(this.x, this.y, target.x, target.y) <=
+      this.l + dist(last_target.x, last_target.y, target.x, target.y)
+    ) {
+      this.segments[0].fallback({ x: this.x, y: this.y });
+      for (let i = 1; i < this.n; i++) {
+        this.segments[i].fallback(this.segments[i - 1].nextPos);
+      }
+    }
+  }
+
+  show(target) {
+    if (dist(this.x, this.y, target.x, target.y) <= this.l) {
+      c.globalCompositeOperation = "lighter";
+      c.beginPath();
+      c.lineTo(this.x, this.y);
+      for (let i = 0; i < this.n; i++) {
+        this.segments[i].show();
+      }
+      c.strokeStyle =
+        "hsl(" +
+        (this.rand * 60 + 180) +
+        ",100%," +
+        (this.rand * 60 + 25) +
+        "%)";
+      c.lineWidth = this.rand * 2;
+      c.lineCap = "round";
+      c.lineJoin = "round";
+      c.stroke();
+      c.globalCompositeOperation = "source-over";
+    }
+  }
+
+  show2(target) {
+    c.beginPath();
+    if (dist(this.x, this.y, target.x, target.y) <= this.l) {
+      c.arc(this.x, this.y, 2 * this.rand + 1, 0, 2 * Math.PI);
+      c.fillStyle = "white";
+    } else {
+      c.arc(this.x, this.y, this.rand * 2, 0, 2 * Math.PI);
+      c.fillStyle = "darkcyan";
+    }
+    c.fill();
+  }
+}
 }
