@@ -216,7 +216,7 @@ let maxl = 300,
     last_target.x = target.x;
     last_target.y = target.y;
   }
-  
+
   canvas.addEventListener(
     "mousemove",
     function (e) {
@@ -228,4 +228,10 @@ let maxl = 300,
     },
     false
   );
+
+  canvas.addEventListener("mouseleave", function (e) {
+    mouse.x = false;
+    mouse.y = false;
+  });
+  
 }
