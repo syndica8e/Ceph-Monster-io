@@ -261,5 +261,6 @@ let maxl = 300,
       (h = canvas.height = window.innerHeight);
     loop();
   });  
-  
+
+  loop();
 }
