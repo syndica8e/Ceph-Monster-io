@@ -234,4 +234,11 @@ let maxl = 300,
     mouse.y = false;
   });
   
+  canvas.addEventListener(
+    "mousedown",
+    function (e) {
+      clicked = true;
+    },
+    false
+  );  
 }
