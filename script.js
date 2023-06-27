@@ -160,4 +160,16 @@ let maxl = 300,
   last_target = {},
   t = 0,
   q = 10;
+
+  for (let i = 0; i < numt; i++) {
+    tent.push(
+      new tentacle(
+        Math.random() * w,
+        Math.random() * h,
+        Math.random() * (maxl - minl) + minl,
+        n,
+        Math.random() * 2 * Math.PI
+      )
+    );
+  }
 }
