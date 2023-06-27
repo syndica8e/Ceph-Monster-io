@@ -149,4 +149,15 @@ class tentacle {
     c.fill();
   }
 }
+
+let maxl = 300,
+  minl = 50,
+  n = 30,
+  numt = 500,
+  tent = [],
+  clicked = false,
+  target = { x: 0, y: 0 },
+  last_target = {},
+  t = 0,
+  q = 10;
 }
